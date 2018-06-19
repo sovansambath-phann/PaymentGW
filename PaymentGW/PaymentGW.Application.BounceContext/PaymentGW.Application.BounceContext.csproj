@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PaymentGW.ThirdParty.Library">
+      <HintPath>..\PaymentGW.ThirdParty.Library\bin\Debug\PaymentGW.ThirdParty.Library.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,7 +42,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Card\DTO\ACard.cs" />
+    <Compile Include="Card\DTO\AmexCard.cs" />
+    <Compile Include="Card\DTO\CardFactory.cs" />
+    <Compile Include="Card\DTO\JCBCard.cs" />
+    <Compile Include="Card\DTO\MasterCard.cs" />
+    <Compile Include="Card\DTO\VisaCard.cs" />
+    <Compile Include="Card\Exceptions\InvalidCardException.cs" />
+    <Compile Include="Card\Exceptions\UnknownCardException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\DTO\CardType.cs" />
+    <Compile Include="Validation\DTO\ValidationResult.cs" />
+    <Compile Include="Validation\Exception\CardNotFoundException.cs" />
+    <Compile Include="Validation\Exception\CardNumberDigitException.cs" />
+    <Compile Include="Validation\Exception\CardNumberFormatException.cs" />
+    <Compile Include="Validation\Exception\EmptyCardException.cs" />
+    <Compile Include="Validation\Exception\ExpiryDateFormatException.cs" />
+    <Compile Include="Validation\Service\IValidationService.cs" />
+    <Compile Include="Validation\Service\ValidationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Card\Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
