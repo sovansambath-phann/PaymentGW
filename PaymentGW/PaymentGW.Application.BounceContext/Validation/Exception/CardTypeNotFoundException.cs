@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PaymentGW.Application.BounceContext.Validation.Exception {
-    public class CardNotFoundException : System.Exception{
+    public class CardTypeNotFoundException : System.Exception{
     }
 }

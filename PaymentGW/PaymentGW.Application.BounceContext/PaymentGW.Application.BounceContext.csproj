@@ -30,6 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\PaymentGW.Domain.BounceContext\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\PaymentGW.Domain.BounceContext\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PaymentGW.Domain.BounceContext">
+      <HintPath>..\PaymentGW.Domain.BounceContext\bin\Debug\PaymentGW.Domain.BounceContext.dll</HintPath>
+    </Reference>
     <Reference Include="PaymentGW.ThirdParty.Library">
       <HintPath>..\PaymentGW.ThirdParty.Library\bin\Debug\PaymentGW.ThirdParty.Library.dll</HintPath>
     </Reference>

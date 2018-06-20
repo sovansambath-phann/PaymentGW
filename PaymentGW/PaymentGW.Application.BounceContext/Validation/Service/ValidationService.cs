@@ -5,40 +5,59 @@ using System.Text;
 using System.Threading.Tasks;
 using PaymentGW.Application.BounceContext.Validation.Exception;
 using System.Text.RegularExpressions;
+using PaymentGW.Application.BounceContext.Validation.DTO;
+using PaymentGW.Domain.BounceContext.Card.Repository;
 
 namespace PaymentGW.Application.BounceContext.Validation.Service {
     public class ValidationService :IValidationService{
-        public bool IsCardNumberFormatValid(string cardNumber) {
+        public ValidationResult Validate(string cardNumber, string expiryDate) {
+            ValidationResult validationResult = new ValidationResult();
+            validationResult.CardNumber = cardNumber;
+            validationResult.IsValid = true;
+            validationResult.Message = string.Empty;
+            
+
             if (string.IsNullOrEmpty(cardNumber)) {
-                throw new EmptyCardException();
+                validationResult.Message = "CardNumber can not be empty.";
+                validationResult.IsValid = false;
+                return validationResult;
             }
 
             if (cardNumber.Length != 15 && cardNumber.Length != 16) {
-                throw new CardNumberFormatException();
+                validationResult.Message = "CardNumber must be 15 or 16 digits.";
+                validationResult.IsValid = false;
+                return validationResult;
             }
+
 
             if (!((cardNumber.StartsWith("3") || cardNumber.StartsWith("4") || cardNumber.StartsWith("5")))) {
-                throw new CardTypeNotFoundException();
+                validationResult.Message = "CardNumber must start by digit 3,4 or 5.";
+                validationResult.IsValid = false;
+                return validationResult;
             }
 
-            return true;
-        }
-
-        public bool IsExpiryDateFormatValid(string expiryDate) {
             if (string.IsNullOrEmpty(expiryDate)) {
-                throw new ExpiryDateFormatException();
+                validationResult.Message = "Expiry date can not be empty";
+                validationResult.IsValid = false;
+                return validationResult;
             }
 
             var regex = new Regex(@"^(0?[1-9]|1[0-2])\d\d\d\d$", RegexOptions.Singleline);
-            if (!regex.IsMatch(expiryDate)) { 
-                throw new ExpiryDateFormatException();
+            if (!regex.IsMatch(expiryDate)) {
+                validationResult.Message = "Expiry date must be in format MMYYYY";
+                validationResult.IsValid = false;
+                return validationResult;
             }
 
-            return true;
-        }
+            ICardRepository repository = new CardRepository();
+            var isExist = repository.IsCardExistInDB(cardNumber);
+            if (!isExist) {
+                validationResult.Message = "Card doesn't exist ";
+                validationResult.IsValid = false;
+                return validationResult;
+            }
 
-        public bool IsCardExistInDB(string cardNumber) {
-            throw new NotImplementedException();
+            return validationResult;
         }
     }
 }
