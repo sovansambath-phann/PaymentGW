@@ -53,12 +53,15 @@
   <ItemGroup>
     <Compile Include="Card\DTO\ACard.cs" />
     <Compile Include="Card\DTO\AmexCard.cs" />
+    <Compile Include="Card\DTO\CardDto.cs" />
     <Compile Include="Card\DTO\CardFactory.cs" />
     <Compile Include="Card\DTO\JCBCard.cs" />
     <Compile Include="Card\DTO\MasterCard.cs" />
     <Compile Include="Card\DTO\VisaCard.cs" />
     <Compile Include="Card\Exceptions\InvalidCardException.cs" />
     <Compile Include="Card\Exceptions\UnknownCardException.cs" />
+    <Compile Include="Card\Service\CardService.cs" />
+    <Compile Include="Card\Service\ICardService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\DTO\CardType.cs" />
     <Compile Include="Validation\DTO\ValidationResult.cs" />
@@ -70,9 +73,7 @@
     <Compile Include="Validation\Service\IValidationService.cs" />
     <Compile Include="Validation\Service\ValidationService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Card\Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
